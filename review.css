@@ -1,0 +1,189 @@
+html,body {
+  font-family : Verdana, Tahoma, Helvetica, sans-serif;
+  margin : 0;
+  padding : 0;
+  background : #FFFFFF;
+}
+
+p {
+  margin : 0;
+  padding : 5px;
+}
+
+h2 {
+  color : #673AB7;
+}
+
+a:link {
+  color : #311B92;
+  text-decoration : none;
+}
+a:visited{
+  color : #673AB7;
+  text-decoration : none;
+}
+
+div#side-bar-backdrop {
+  visibility : hidden;
+  position : fixed;
+  height : 100%;
+  width : 100%;
+  background : black;
+  opacity : 0;
+  transition : opacity 0.5s ease-in;
+  z-index : 19;
+}
+
+div#wrapper {
+  height : 100%;
+}
+
+div#side-bar {
+  position : fixed;
+  top : 0px;
+  left : -264;
+  height : 100%;
+  width : 256px;
+  max-width : 70%; /*to make sure it doesn't block entire small screen*/
+  overflow-x : hidden;
+  margin : 0;
+  background : white;
+  box-shadow : 2px 0px 8px black;
+  z-index : 20;
+  transition: left 0.5s ease-in;
+}
+
+div#side-bar-header {
+  width : 100%;
+  height : 72px;
+  line-height : 72px;
+  text-align : center;
+  font-weight : bold;
+  background : #673AB7;
+  color : #EDE7F6;
+}
+
+p.side-bar-subheading {
+  padding : 16px;
+  color : gray;
+}
+
+p.side-bar-item {
+  padding : 16px;
+  padding-left : 32px;
+  font-weight : bold;
+  cursor : pointer;
+}
+
+p.side-bar-item:hover {
+  background : #EEEEEE;
+}
+
+div#top-bar {
+  position : fixed;
+  height : 40px;
+  line-height : 40px;
+  width : 100%;
+  overflow : hidden;
+  margin : 0px;
+  color : #EDE7F6;
+  background : #673AB7;
+  box-shadow : 0px 2px 4px gray;
+  z-index : 10;
+}
+
+span#menu-open-button {
+  font-size : 2em;
+  padding : 10px;
+  cursor : pointer;
+}
+
+span#fanfiction-title {
+  font-style : italic;
+  vertical-align : top;
+}
+
+div#jump-to-top-button {
+  position : fixed;
+  right : 0px;
+  height : 40px;
+  line-height : 40px;
+  font-size : 0.9em;
+  overflow : hidden;
+  margin : 0px;
+  z-index : 15;
+}
+#jump-to-top-button a {
+  color : #EDE7F6;
+  text-decoration : none;
+}
+
+div#input-area {
+  padding : 5px;
+  padding-top : 48px; /*to make room for header above */
+}
+
+div#filter-area {
+  padding : 5px;
+}
+
+span.pseudolink {
+  text-decoration : underline;
+  cursor : pointer;
+}
+
+span.list-linked {
+  font-weight : bold;
+  color : #311B92;
+  cursor : pointer;
+  padding-left : 20px;
+  line-height : 2em;
+}
+
+span.list-unlinked {
+  color : #7E57C2;
+  padding-left : 20px;
+  line-height : 2em;
+}
+
+div.review-card {
+  position : relative;
+  margin : 5px;
+  margin-bottom : 8px;
+  padding : 16px;
+  border-radius : 2px;
+  background : #FFFFFF;
+  box-shadow : 1px 1px 2px 1px gray;
+  z-index : 1;
+}
+
+span.review-card-username {
+  font-weight : bold;
+  color : #311B92;
+  cursor : pointer;
+}
+
+span.review-card-chapter {
+  font-size : small;
+  text-decoration : underline;
+  position : absolute;
+  right : 16px;
+  cursor : pointer;
+}
+
+p.review-card-date {
+  font-size : small;
+  color : gray;
+  text-align : right;
+}
+
+p#number-of-reviews {
+  font-weight : bold;
+  color : #311B92;
+  cursor : pointer;
+}
+
+div#footer {
+  bottom : 5px;
+  max-width : 500px;
+}

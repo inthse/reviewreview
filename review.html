@@ -1,0 +1,138 @@
+<html>
+<head>
+  <title>Review Review</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript" src="review.js"></script>
+  <link href="review.css" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+</head>
+<body onload="main();">
+  <div id="side-bar-backdrop" onclick="show.sidebar(false);"></div>
+  <div id="side-bar">
+    <div id="side-bar-header" onclick="show.mainPage();">
+      Review Review v1.0
+    </div>
+    <p class="side-bar-subheading">
+      Filters
+    </p>
+    <p class="side-bar-item" onclick="show.filters.byName();">
+      by username
+    </p>
+    <p class="side-bar-item" onclick="show.filters.byChapter();">
+      by chapter
+    </p>
+    <p class="side-bar-item" onclick="show.filters.byDate();">
+      by date range
+    </p>
+    <p class="side-bar-item" onclick="show.filters.bySearch();">
+      search content
+    </p>
+    <p class="side-bar-subheading">
+      Information
+    </p>
+    <p class="side-bar-item" onclick="show.exportPage();">
+      Export / Download
+    </p>
+    <p class="side-bar-item" onclick="show.feedbackPage();">
+      Feedback
+    </p>
+    <p class="side-bar-item" onclick="show.helpPage();">
+      Help / FAQ
+    </p>
+    <p class="side-bar-subheading">
+      &#169; 2018 <a href="" target="_blank">[penname redacted]</a>
+    </p>
+  </div> <!-- end of side-bar -->
+  <div id="top-bar">
+    <span id="menu-open-button" onclick="show.sidebar(true);">&#8801;</span>
+    <span id="fanfiction-title">[Title of your fic appears here]</span>
+  </div>
+  <div id="jump-to-top-button"><a href="#top">&nbsp;&#8593;&nbsp;top&nbsp;</a></div>
+  <a id="top"></a>
+  <div id="wrapper">
+    <div id="input-area">
+      <input id="url-for-reviews" type="url" placeholder="https://www.fanfiction.net/s/6829556/" size="26"></input>
+      <input id="url-for-reviews-submit" type="submit" value="Fetch!" onclick="fetch.reviewData()"></input>
+    </div>
+    <div id="details-area">
+      <p id="number-of-reviews" onclick="show.allReviews();">Show All Reviews (#)</p>
+    </div>
+    <div id="output">
+      <!-- script will show reviews here-->
+      <hr>
+      <div style='padding:8px;'>
+        <h2>Simple Instructions</h2>
+        <h4>Step 1: Paste your fanfiction link</h4>
+        Anything with your story number in it works. Example: https://www.fanfiction.net/s/<strong>6829556</strong>/
+        <h4>Step 2: Click Fetch! only once</h4>
+        The app will fetch your reviews in batches of 15 every half second (<span class="pseudolink" onclick="show.helpPage();">find out why</span>).
+        You can start exploring stuff without waiting for all of them. There's a menu button on the top left. I tried to make everything intuitive. Click ALL the things!
+        <br><br><em>CAUTION: This app fetches literally ALL of your reviews. For the love of Andraste, don't do this if you're HPMOR famous and have like 34000 reviews. I won't be held responsible if your browser explodes.</em>
+      </div>
+    </div>
+  </div> <!-- end of wrapper -->
+  <div id="hidden-export" style="display:none;">
+    <div style="padding:8px;">
+      <hr>
+      <h2>Save Review Data in Browser</h2>
+      Wow! If you have a modern browser, it can save data in local storage. As long as you don't clear your browser data, you can use this page even without an internet connection just by typing "local" instead of a web address before clicking "Fetch!"
+      <br><br><button onclick="tools.storeLocal();">save</button> or
+      <button onclick="tools.storeLocal('clear');">clear</button><br>
+      <span id="local-data-status"></span><br>
+      <h2>Export Reviews to File</h2>
+      Might not work in every browser (tested successfully with Google Chrome).
+      If this fails, you can always Show All Reviews, select all, and copy/paste them into your own document.
+      <h4>Step 1: Choose Type of File</h4>
+      <button onclick="exportReviewsToFile('plain');">generate plain text</button> or
+      <button onclick="exportReviewsToFile('json');">generate JSON</button><br>
+      <h4>Step 2: Click Link to Download</h4>
+      <a href="" id="exportReviewsLink">[choose file type first]</a>
+    </div>
+  </div> <!-- end of hidden export div -->
+  <div id="hidden-help" style="display:none;">
+    <div style='padding:8px;'>
+      <hr>
+      <h1>Help</h1>
+      <h2>FAQ</h2>
+      <h3>1. Why is this slow to show all reviews?</h3>
+      Short answer: To be nice to Fanfiction.net's servers.<br>
+      Long answer: Their website only shows 15 reviews per page, and this app needs to request all of those pages to get all of the reviews.
+      My app is capable of requesting them <em>very</em> quickly, much faster than a human, but that's rude, especially when their website is busy.
+      Because we all want to be good netizens, I deliberately put a half-second delay between the requests.
+      Most people don't have a lot of reviews.
+      If you have a billion of them, I'm <em>so sorry</em> for your wait. *plays world's smallest violin* ;)
+      <h3>2. Can I use this offline instead of fetching my reviews EVERY FECKIN TIME?</h3>
+      You sure feckin can! It won't stay up-to-date, but you can re-save your reviews when desired.
+      <ol>
+        <li>Wait for the app to finish fetching all of your reviews</li>
+        <li>Open the side menu and click Export / Download</li>
+        <li>Click the "save" button in the "Save Review Data in Browser" section</li>
+        <li>From now on, instead of pasting a web address, type <em>local</em> and click Fetch! like usual.</li>
+        <li>This will keep working until you delete your browser data or click the "clear" button.</li>
+      </ol>
+      <h3>3. Does Fanfiction.net approve of this?</h3>
+      Probably not! >_> They rely on advertising revenue to keep their website running,
+      so please continue visiting them and clicking on appealing ads.
+      <h2>About</h2>
+      <p>
+        Hi! [penname redacted] here. I made this webpage for Fanfiction.net authors who want a more versatile way to review their reviews.
+        The two main reasons for it were to A) see all of a reader's reviews from multiple chapters,
+        and B) backup my reviews because <em>Maker's breath</em> I love my readers and never want to lose anything they said.
+      </p>
+      <p>
+        <em>Possible future features:</em><br>
+        <ol>
+          <li>limit number of pages to collect (in case you just want to see recent reviews)</li>
+          <li>more date range abilities</li>
+          <li>robust boolean search</li>
+          <li>show each reader's number of reviews on the username list (and sort by number?)</li>
+          <li>analysis abilities (frequency of reviews? most common words?)</li>
+          <li><span class="pseudolink" onclick="show.feedbackPage();">suggest something</span></li>
+        </ol>
+        Cross-origin scripting thanks to <a href="http://multiverso.me/AllOrigins/" target="_blank">All Origins</a>
+      </p>
+      <br><br>
+    </div>
+  </div> <!-- end of hidden help div -->
+</body>
+</html>
