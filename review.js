@@ -117,6 +117,7 @@ function listUniqueNames(reviewList) {
 
   var uniqueNamesList = [];
   var rl = reviewList.length;
+  var uniqueNamesMatrix = [];
 
   function scaleSort() {
     //called when there are too many reviews/usernames to reasonably sort in a single array
@@ -174,13 +175,13 @@ var show = {
     var sideBar = document.getElementById("side-bar");
     var backdropDiv = document.getElementById("side-bar-backdrop");
     if(value) {
-      sideBar.style.left = 0;
+      sideBar.style.left = "0px";
       backdropDiv.style.visibility = "visible";
-      backdropDiv.style.opacity = 0.3;
+      backdropDiv.style.opacity = "0.3";
     }
     else {
-      sideBar.style.left = -264;
-      backdropDiv.style.opacity = 0;
+      sideBar.style.left = "-264px";
+      backdropDiv.style.opacity = "0";
       setTimeout(function(){
         backdropDiv.style.visibility = "hidden";
       },500);
